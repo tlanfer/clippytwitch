@@ -10,6 +10,7 @@ clippy.load('Clippy', function(agent) {
 
 var clippyAutohide = false;
 var clippyAllowMessage = true;
+var clippySound = true;
 
 const clippySay = function (message, animation) {
     if(!clippyAllowMessage){
@@ -17,6 +18,7 @@ const clippySay = function (message, animation) {
     }
 
     clippyAllowMessage = false;
+    clippyAgent.setSoundEnabled(clippySound);
 
     setTimeout(function () {
         clippyAllowMessage = true;
@@ -39,12 +41,17 @@ const clippySay = function (message, animation) {
 
 const clippySetup = function(settings){
     clippyAutohide = settings.autohide || false;
+    clippySound = settings.sound;
+
     document.getElementById("clippyAutohide").checked = settings.autohide;
+    document.getElementById("clippySound").checked = clippySound;
+
     clippySay("Ready to rock", null);
 };
 
 const clippyGetConfigFromUi = function () {
     return {
-        autohide: document.getElementById("clippyAutohide").checked
+        autohide: document.getElementById("clippyAutohide").checked,
+        sound:  document.getElementById("clippySound").checked
     }
 };

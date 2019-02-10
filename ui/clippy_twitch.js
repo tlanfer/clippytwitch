@@ -83,8 +83,7 @@ function createTwitchReactionRow(keyword, message, animation) {
     const testbutton = document.createElement("button");
     testbutton.innerText = "TEST";
     testbutton.addEventListener("click", function () {
-        clippyAgent.speak(messageInput.value);
-        clippyAgent.play(animationSelect.value);
+        clippySay(messageInput.value, animationSelect.value);
     });
 
     tdTesting.append(testbutton);

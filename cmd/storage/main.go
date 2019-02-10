@@ -181,6 +181,7 @@ type StreamlabsConfigDto struct {
 
 type ClippyConfigDto struct {
 	Autohide bool `json:"autohide"`
+	Sound bool `json:"sound"`
 }
 
 type ConfigDto struct {
