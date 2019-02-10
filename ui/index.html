@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="clippy.css" media="all">
+    <link rel="stylesheet" type="text/css" href="style.css" media="all">
+
+
+    <script src="https://gitcdn.xyz/repo/tmijs/cdn/master/latest/1.x/tmi.min.js"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js' type='text/javascript'></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="clippy.min.js"></script>
+
+    <script src="clippy_agent.js" type="text/javascript"></script>
+    <script src="clippy_streamlabs.js" type="text/javascript"></script>
+    <script src="clippy_twitch.js" type="text/javascript"></script>
+    <script src="clippy_settings.js" type="text/javascript"></script>
+    <script src="clippy_menu.js" type="text/javascript"></script>
+</head>
+<body>
+
+<div id="configMenu" class="hidden">
+    <h1>Configuration</h1>
+
+    <section>
+        Your unique link is:
+        <input type="text" id="uniqueLink" value="http://clippytwitch.tlanfer.de/#asdfasdf">
+        <p>
+            Use this link in you browser source obs thingy and clippy will show on an empty page, where this configuration menu is hidden.
+        </p>
+    </section>
+
+    <section>
+        <h2>Clippy</h2>
+        <input type="checkbox" id="clippyAutohide"> Hide clippy when idle
+    </section>
+
+    <section>
+        <h2>Twitch bot</h2>
+        <input type="checkbox" id="twitchEnabled" onclick="twitchSettingsShowHide()"> Enable twitch bot integration
+        <div id="twitchSettings">
+            <h3>Connection</h3>
+            <p>
+                To connect to twitch, you will need a twitch account for your bot.
+                I will only read messages, not never post on your behalf.
+                Enter your bot username and oauth token below.
+                <i>There is a cooldown of 10 Seconds between messages, to prevent clippy spam!</i>
+            </p>
+            <p>
+                If you do not have the credentials:
+                <ol>
+                    <li>
+                        Make a twitch account for the bot.
+                    </li>
+                    <li>
+                        Use a browser logged into your bots twitch account and open <a href="https://twitchapps.com/tmi/">this link</a>.
+                    </li>
+                    <li>
+                        Use the new bots account name and the oauth-token from the link above.
+                    </li>
+                </ol>
+            </p>
+            <label>Twitch bot username: </label>
+            <input type="text" id="twitchUsername">
+            <br>
+
+            <label>Twitch oauth token: </label>
+            <input type="text" id="twitchToken">
+            <br>
+
+            <label>Twitch channels to monitor (comma seperated): </label>
+            <input type="text" id="twitchChannels">
+
+            <h3>Reactions</h3>
+            <p>
+                Setup keywords to provoke reactions. In the message, you can use the token ##user##.
+            </p>
+            <table>
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Keyword</th>
+                        <th>Message</th>
+                        <th>Animation</th>
+                        <th><button onclick="addTwitchReactionRow()">ADD</button></th>
+                    </tr>
+                </thead>
+                <tbody id="twitchreactions">
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!--
+<section>
+    <h2>Streamlabs</h2>
+    <input type="checkbox" id="streamlabsEnabled" onclick="streamlabsSettingsShowHide()"> Enable streamlabs integration
+    <div id="streamlabsSettings">
+        <p>To connect to streamlabs, <a href="https://www.streamlabs.com/api/v1.0/authorize?client_id=8tZLbtpZKlRsF4RW2yvKbPGvb3ZGpnPdl53QQeQl&redirect_uri=https%3A%2F%2F8m2t1eqw8c.execute-api.eu-central-1.amazonaws.com%2Fthing%2Fcallback&response_type=code&scope=socket.token" target="_blank">click here</a></p>
+
+        <label>Streamlabs access token: </label>
+        <input type="text" id="streamlabsToken">
+        <br />
+
+        <p>
+            You can configure messages to show on streamlabs events.
+            To disable any of these, just leave the message empty.
+        </p>
+        <p>
+            In the message, you can use the field ##username## to be replaced by the user.
+        </p>
+
+        <label>Message for followers: </label>
+        <input type="text" id="streamlabsFollowerMessage">
+        <br />
+
+        <label>Message for subscribers: </label>
+        <input type="text" id="streamlabsSubscriberMessage">
+        <br />
+
+        <label>Anything else: </label>
+        <input type="text" id="streamlabsFallbackMessage">
+        <br />
+
+    </div>
+</section>
+    -->
+
+    <button id="closeMenu" onclick="saveAndClose()">Save and close</button>
+</div>
+
+<script type="text/javascript">
+    initApp();
+</script>
+</body>
+</html>

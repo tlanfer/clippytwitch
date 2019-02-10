@@ -1,0 +1,58 @@
+body {
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0 auto;
+    width: 1000px;
+}
+
+.hidden {
+    display:none;
+}
+
+label {
+    width: 200px;
+    display: inline-block;
+}
+
+#configMenu {
+    margin-bottom: 2em;
+}
+
+input[type='text'] {
+    width: 300px;
+    border: 1px solid #ccc;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+td, th {
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+
+th {
+    background-color: #ccc;
+}
+
+button#closeMenu {
+    margin-top: 2em;
+    border: none;
+    width: 70%;
+    padding: 1em;
+    margin: 2em auto;
+    display: block;
+    background-color: hsl(130, 50%, 60%);
+    border-radius: 10px;
+    color: white;
+    text-shadow: 0 0 5px black;
+}
+
+button#closeMenu:hover {
+    background-color: hsl(130, 50%, 70%);
+}
+
+div#streamlabsSettings, div#twitchSettings {
+    border-left: 2px solid hsl(130, 50%, 60%);
+    padding-left: 1em;
+}
