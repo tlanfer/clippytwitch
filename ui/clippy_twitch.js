@@ -6,11 +6,14 @@ const twitchConnect = function( username, token, channels, reactions) {
     }
 
     twitchClient = new tmi.client({
+        connection: {
+            secure:true,
+        },
         identity: {
             username: username,
             password: token
         },
-        channels: channels
+        channels: channels,
     });
 
     onMessageHandler = function(target, context, msg, self) {
@@ -20,7 +23,7 @@ const twitchConnect = function( username, token, channels, reactions) {
 
         for (let i = 0; i < reactions.length; i++) {
             let reaction = reactions[i];
-            if (msg.indexOf(reaction.keyword)>-1){
+            if(new RegExp("\\b"+reaction.keyword+"\\b").test(msg)){
                 var actualMessage = "";
                 if(reaction.message != null && reaction.message != ""){
                     var actualMessage = reaction.message;

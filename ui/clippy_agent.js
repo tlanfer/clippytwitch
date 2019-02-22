@@ -18,14 +18,14 @@ const clippySay = function (message, animation) {
     }
 
     clippyAllowMessage = false;
-    clippyAgent.setSoundEnabled(clippySound);
+    //clippyAgent.setSoundEnabled(clippySound);
 
     setTimeout(function () {
         clippyAllowMessage = true;
         if( clippyAutohide){
             clippyAgent.hide();
         }
-    }, 10000);
+    }, 2000);
 
 
     clippyAgent.show();
